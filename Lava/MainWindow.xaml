@@ -1,0 +1,242 @@
+﻿<Window x:Class="Lava.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lava"
+        mc:Ignorable="d"
+        WindowState="Maximized" 
+        Title="MainWindow"
+        ResizeMode="NoResize" 
+        WindowStyle="None" Width="1756" Height="1219" Background="{x:Null}">
+
+    <Window.Resources>
+        <Storyboard x:Key="FlashButton" RepeatBehavior="Forever">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ChangeColor">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="button">
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="Red"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ChangeColor2">
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="button">
+                <EasingColorKeyFrame KeyTime="0:0:0.5" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Viewbox Stretch="Fill">
+        <Grid>
+            <Grid Background="#FF979696" Height="807" Width="1300">
+                <Grid Name="Head" Background="White" Margin="0,0,0,769">
+                    <Grid>
+                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="54" Height="32" Margin="10,3,0,0">
+                            <Image  Margin="5,4,7,4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="D:\Lava\Lava\bin\Debug\NewRender\Логотип БК-студия.png" Width="42" Height="24"/>
+                        </Grid>
+                        <Grid Margin="387,0,369,0" HorizontalAlignment="Center" Width="544">
+                            <Label Margin="144,0,155,5" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="19" Content="Огневой полигон &quot;Лава&quot;" FontFamily="Arial" FontWeight="Bold" Height="28" Width="245"/>
+                        </Grid>
+                        <Grid VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,3,0,0" Height="35" Width="78">
+                            <Button Style="{StaticResource MyButton}" Content="-" Margin="9,4,44,0" Cursor="Hand" FontSize="16" MinWidth="25" MinHeight="25" VerticalAlignment="Top" Background="#FF959393" Foreground="White" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontStyle="Italic" Click="Button_Click_1" Width="15"/>
+                            <Button Style="{StaticResource MyButton}" Content="X" HorizontalAlignment="Right" Margin="0,4,5,0" Cursor="Hand" FontSize="16" MinWidth="25" MinHeight="25" VerticalAlignment="Top" Background="#FFE64343" Foreground="White" Click="Button_Click" Height="24" Width="27"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Border BorderBrush="#FF787878" BorderThickness="1" HorizontalAlignment="Left" Height="736" Margin="10,61,0,0" VerticalAlignment="Top" Width="1280" CornerRadius="10" Background="#FFE2E1E1" RenderTransformOrigin="0.49,0.541">
+                    <Grid RenderTransformOrigin="0.491,0.538">
+                        <Border BorderBrush="#FF707070" Background="#FF707070" Margin="-18,422,673,310" VerticalAlignment="Center" Height="2" RenderTransformOrigin="0.5,0.5">
+                            <Border.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Border.RenderTransform>
+                        </Border>
+                        <Button Style="{StaticResource MyButton}" HorizontalAlignment="Right" Margin="0,66,274,628" VerticalAlignment="Center" FontSize="14" MinWidth="60" MinHeight="25" FontFamily="Arial" Foreground="White" FontWeight="Bold" Cursor="Hand" Height="40" Width="240" Click="ResetTime_Click" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5">
+                            <Button.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-0.014"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Button.RenderTransform>
+                            <Border CornerRadius="12" Padding="2" BorderThickness="2" RenderTransformOrigin="0.468,0.361" HorizontalAlignment="Center" VerticalAlignment="Center" Width="238" Background="#FFD82F2F" Height="38">
+                                <Label Content="Сброс времени тренировки" HorizontalAlignment="Center" HorizontalContentAlignment ="Center" VerticalContentAlignment="Center"  VerticalAlignment="Center" Width="254" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="White" Height="50" BorderBrush="#FF555555" Background="{x:Null}"/>
+                            </Border>
+                        </Button>
+
+                        <Border CornerRadius="12" Padding="2" BorderThickness="2" RenderTransformOrigin="0.468,0.361" Margin="397,43,687,653" HorizontalAlignment="Center" VerticalAlignment="Center" Width="194" Background="#FF5AC155" Height="38">
+                            <Label Content="Состояние: исправно" HorizontalAlignment="Center" HorizontalContentAlignment ="Center" VerticalContentAlignment="Center"  Margin="-4,-8,-4,-4" VerticalAlignment="Center" Width="194" FontSize="16" FontFamily="Arial" FontWeight="Bold" Foreground="White" Height="42" BorderBrush="#FF555555" Background="{x:Null}"/>
+                        </Border>
+                        <Label Content="Время: " FontSize="16" FontWeight="Bold" FontFamily="Arial" Margin="764,-1,446,699" HorizontalContentAlignment ="Right" VerticalContentAlignment="Center" Foreground="Black"/>
+                        <Label Content="Время тренировки: " FontSize="16" FontWeight="Bold" FontFamily="Arial" Margin="764,32,351,673" HorizontalContentAlignment ="Right" VerticalContentAlignment="Center" Foreground="Black"/>
+                        <Label Name="Time" Content="" FontSize="16" FontFamily="Arial" Margin="832,3,316,704" HorizontalContentAlignment ="Left" VerticalContentAlignment="Center" Foreground="Black"/>
+                        <Label Name="TimeTraining" Content="00:00:00" FontSize="16" FontFamily="Arial" Margin="932,32,254,671" HorizontalContentAlignment ="Left" VerticalContentAlignment="Center" Foreground="Black"/>
+                        <Border BorderBrush="#FF878787" Background="#FF707070" Margin="0,111,0,621" VerticalAlignment="Center" Height="2"/>
+                        <Image x:Name="Svet" HorizontalAlignment="Left" Height="226" Margin="334,147,0,0" VerticalAlignment="Top" Width="208" Source="D:\Lava\Lava\bin\Debug\NewRender\СиловойЯщик_3.png" Cursor="Hand"/>
+                        <Image x:Name="Monometr" HorizontalAlignment="Left" Height="248" Margin="60,486,0,0" VerticalAlignment="Top" Width="198" Source="D:\Lava\Lava\bin\Debug\NewRender\Манометр.png" Cursor="Hand"/>
+                        <Image x:Name="Monometr_Strelka" HorizontalAlignment="Left" Height="95" Margin="139,507,0,0" VerticalAlignment="Top" Width="20" Source="D:\Lava\Lava\bin\Debug\NewRender\Стрелка.png" Cursor="Hand" RenderTransformOrigin="0.512,0.692">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-137"/>
+                                    <TranslateTransform X="-0.576" Y="0.569"/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Image x:Name="Door" HorizontalAlignment="Left" Height="168" Margin="582,147,0,0" VerticalAlignment="Top" Width="208" Source="D:\Lava\Lava\bin\Debug\NewRender\Дверь_1.png" MouseLeftButtonDown="Door_MouseLeftButtonDown" Cursor="Hand"/>
+                        <Image x:Name="Flange" HorizontalAlignment="Left" Height="196" Margin="826,147,0,0" VerticalAlignment="Top" Width="194" Source="D:\Lava\Lava\bin\Debug\NewRender\Трубы_1.png" Cursor="Hand" MouseLeftButtonDown="Flange_MouseLeftButtonDown"/>
+                        <Image x:Name="Cylinders" HorizontalAlignment="Left" Height="226" Margin="1051,147,0,0" VerticalAlignment="Top" Width="208" Source="D:\Lava\Lava\bin\Debug\NewRender\Горящие баллоны_1.png" Cursor="Hand" MouseLeftButtonDown="Cylinders_MouseLeftButtonDown"/>
+                        <Label Content="Промышленный участок" HorizontalAlignment="Left" Margin="294,113,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial" FontWeight="Bold" Background="#FF8B8686" Foreground="White"/>
+                        <Label Content="Хранилище газа" HorizontalAlignment="Left" Margin="67,113,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial" FontWeight="Bold" Background="#FF8B8686" Foreground="White"/>
+                        <Label Content="Температура: " HorizontalAlignment="Left" Margin="850,122,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+                        <Label Content="Температура: " HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+                        <Border BorderBrush="#FF707070" Background="#FF707070" Margin="0,417,0,315" VerticalAlignment="Center" Height="2"/>
+                        <Image x:Name="Ceiling" HorizontalAlignment="Left" Height="250" Margin="334,455,0,0" VerticalAlignment="Top" Width="246" Source="D:\Lava\Lava\bin\Debug\NewRender\Объёмное воспламенение_1.png" Cursor="Hand" MouseLeftButtonDown="Ceiling_MouseLeftButtonDown"/>
+                        <Image x:Name="Bed" HorizontalAlignment="Left" Height="212" Margin="696,471,0,0" VerticalAlignment="Top" Width="218" Source="D:\Lava\Lava\bin\Debug\NewRender\Кровать_1.png" MouseLeftButtonDown="Bed_MouseLeftButtonDown" Cursor="Hand"/>
+                        <Image x:Name="ExampleUI" HorizontalAlignment="Left" Height="925" Margin="1436,249,-1645,-440" VerticalAlignment="Top" Width="1487" Source="D:\Lava\Lava\bin\Debug\NewRender\Интерфейс Лава2.png" MouseLeftButtonDown="Bed_MouseLeftButtonDown" Cursor="Hand"/>
+                        <Image x:Name="TV" HorizontalAlignment="Left" Height="212" Margin="1061,471,0,0" VerticalAlignment="Top" Width="197" Source="D:\Lava\Lava\bin\Debug\NewRender\Телевизор_1.png" Cursor="Hand" MouseLeftButtonDown="TV_MouseLeftButtonDown"/>
+                        <Label x:Name="PromZoneTemp" Content="-35C" HorizontalAlignment="Left" Margin="966,122,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial"/>
+                        <Label x:Name="GazhranZoneTemp" Content="-35C" HorizontalAlignment="Left" Margin="126,156,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial"/>
+                        <Label Content="Концентрация газа: " HorizontalAlignment="Left" Margin="1051,122,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold" Width="221"/>
+                        <Label x:Name="GasAnalyzerPromZonePercent" Content="0%" HorizontalAlignment="Left" Margin="1218,122,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial"/>
+                        <Label x:Name="button" Content="Концентрация газа: " HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold" Width="221"/>
+                        <Label x:Name="GasAnalyzerGazohranZonePercent" Content="51%" HorizontalAlignment="Left" Margin="177,192,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial"/>
+                        <Label Content="Давление газа в сис-ме:" HorizontalAlignment="Left" Margin="10,455,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold" Width="221"/>
+                        <Label x:Name="Monometr_Value_text" Content="0 MPa" HorizontalAlignment="Left" Margin="216,455,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial"/>
+                        <Label Content="Рубильник" HorizontalAlignment="Left" Margin="397,330,0,0" VerticalAlignment="Top" FontSize="13" FontFamily="Arial"/>
+                        <Label Content="Имитатор горящей двери" HorizontalAlignment="Left" Margin="597,330,0,0" VerticalAlignment="Top" FontSize="13" FontFamily="Arial" Width="164" Padding="5,5,5,5"/>
+                        <Label Margin = "795,306,220,404">
+                            <TextBlock FontSize="12" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="263" Height="18"><Run Text="Имитатор горящего г"/><Run Text="азов"/><Run Text="ого"/><Run Text=" трубопровод"/><Run Text="а"/></TextBlock>
+                        </Label>
+
+                        <Label Margin = "1095,319,63,355">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="56"><Run Text="Имитатор горящих газовых "/><Run Text="                   "/><Run Text="баллонов"/></TextBlock>
+                        </Label>
+                        <Label Content="Жилая зона" HorizontalAlignment="Left" Margin="294,419,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial" FontWeight="Bold" Background="#FF8B8686" Foreground="White"/>
+                        <Label Content="Общая информация" HorizontalAlignment="Left" Margin="49,419,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial" FontWeight="Bold" Background="#FF8B8686" Foreground="White"/>
+
+                        <Label Margin = "384,632,774,45">
+                            <TextBlock Text="Имитатор горящего объемного воспламенения" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="122" Height="55"/>
+                        </Label>
+                        <Label Content="Температура: " HorizontalAlignment="Left" Margin="845,430,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+                        <Label x:Name="LizeZoneTemp" Content="-35C" HorizontalAlignment="Left" Margin="961,430,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial"/>
+                        <Label Content="Концентрация газа: " HorizontalAlignment="Left" Margin="1046,430,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold" Width="226"/>
+                        <Label x:Name="GasAnalyzerLiveZonePercent" Content="0%" HorizontalAlignment="Left" Margin="1218,430,0,0" VerticalAlignment="Top" FontSize="18" FontFamily="Arial"/>
+
+                        <Label Margin = "741,644,420,37">
+                            <TextBlock Text="Имитатор горящей кровати" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="105" Height="46"/>
+                        </Label>
+
+                        <Label Margin = "1095,644,64,37">
+                            <TextBlock Text="Имитатор горящего телевизора" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="119" Height="49"/>
+                        </Label>
+
+                        <Image x:Name="Img_But_Door" Margin="582,378,606,323" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Door" Margin="582,380,609,0" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="30" Click="Fuse_Door_Click" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="87"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Door2" Margin="682,380,506,324" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Door2" Margin="682,380,506,0" VerticalAlignment="Top" Width="90" FontSize="11" FontFamily="Arial" Height="30" Click="Fuse_Door_Click2" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image  x:Name="Img_But_Flange_Low" Margin="824,378,364,323" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange_Low" Margin="826,380,364,324" VerticalAlignment="Center" Width="88" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Flange_Click_Low" BorderBrush="{x:Null}" FontWeight="Bold" HorizontalAlignment="Center">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Padding="0" Width="88"/>
+                            </Button.Content>
+                        </Button>
+                        <TextBlock Text="Нижний фланец:" TextWrapping="Wrap" TextAlignment="Center" Width="86" Margin="824,330,368,391" FontSize="10" FontWeight="Bold"/>
+                        <TextBlock Text="Верхний фланец:" TextWrapping="Wrap" TextAlignment="Center" Width="86" Margin="934,330,258,391" FontSize="10" FontWeight="Bold"/>
+                        <Image  x:Name="Img_But_Flange2_Low" Margin="824,346,364,358" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"/>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange2_Low" Margin="824,346,368,0" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="28" Cursor="Hand" Click="Fuse_Flange_Click2_Low" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" Padding="0" Width="86"/>
+                            </Button.Content>
+                        </Button>
+                        <Image  x:Name="Img_But_Flange_High" Margin="932,380,256,324" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange_High" Margin="932,380,256,324" VerticalAlignment="Center" Width="90" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Flange_Click_High" BorderBrush="{x:Null}" FontWeight="Bold" HorizontalAlignment="Center">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Padding="0" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image  x:Name="Img_But_Flange2_High" Margin="932,346,256,358" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"/>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange2_High" Margin="934,346,258,0" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="29" Cursor="Hand" Click="Fuse_Flange_Click2_High" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" Padding="0" Width="86"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Cylinders2" Margin="1164,379,24,322" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Cylinders2" Margin="1164,380,24,0" VerticalAlignment="Top" Width="90" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Cylinders_Click2" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Cylinders" Margin="1063,379,125,322" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Cylinders" Margin="1063,380,125,0" VerticalAlignment="Top" Width="90" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Cylinders_Click" BorderBrush="{x:Null}" FontWeight="Bold" RenderTransformOrigin="0.542,0.35">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Padding="0" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Ceiling2" Margin="452,694,736,10" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Ceiling2" Margin="452,694,736,0" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Ceiling_Click2" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Ceiling" Margin="350,694,838,10" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Ceiling" Margin="350,694,838,0" VerticalAlignment="Top" Width="90" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Ceiling_Click" BorderBrush="{x:Null}" FontWeight="Bold">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Bed" Margin="702,694,486,10" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Bed" Margin="702,694,488,0" VerticalAlignment="Top" Width="88" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Bed_Click" BorderBrush="{x:Null}" FontWeight="Bold">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="88"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_Bed2" Margin="806,694,382,10" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_Bed2" Margin="806,694,382,0" VerticalAlignment="Top" Width="90" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_Bed_Click2" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_TV2" Margin="1164,694,24,10" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_TV2" Margin="1168,694,27,0" VerticalAlignment="Top" Width="83" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_TV_Click2" BorderBrush="{x:Null}" FontWeight="Bold" HorizontalAlignment="Center" Foreground="Gray">
+                            <Button.Content>
+                                <TextBlock Text="Основная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="83"/>
+                            </Button.Content>
+                        </Button>
+                        <Image x:Name="Img_But_TV" Margin="1061,694,127,10" Width="90" Height="30" Source="D:\Lava\Lava\bin\Debug\Button\Grey кнопка.png"></Image>
+                        <Button Style="{StaticResource MyButton}" x:Name="Fuse_TV" Margin="1061,694,127,0" VerticalAlignment="Top" Width="90" FontSize="11" FontFamily="Arial" Height="30" Cursor="Hand" Click="Fuse_TV_Click" BorderBrush="{x:Null}" FontWeight="Bold">
+                            <Button.Content>
+                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" TextAlignment="Center" Width="90"/>
+                            </Button.Content>
+                        </Button>
+                        <Border x:Name="BorderSvet" CornerRadius="5" Padding="2" BorderThickness="2" RenderTransformOrigin="0.498,0.479" Margin="343,378,748,323" HorizontalAlignment="Center" VerticalAlignment="Center" Width="187" Height="33" Background="#FFFFBB00">
+                            <Label x:Name="Voltage" Content="Под напряжением" HorizontalAlignment="Center" HorizontalContentAlignment ="Center" VerticalContentAlignment="Center"  Margin="-4,-11,-4,-9" VerticalAlignment="Center" Width="187" FontSize="18" FontFamily="Arial" FontWeight="Bold" Foreground="Black" Height="45" BorderBrush="#FF555555" Background="{x:Null}"/>
+                        </Border>
+
+                        <Button Style="{StaticResource MyButton}" x:Name="ButtonSvet" HorizontalAlignment="Left" Margin="343,378,0,0" VerticalAlignment="Top" Width="182" Height="30" Foreground="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#00000000"/>
+
+                    </Grid>
+
+                </Border>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
+    
