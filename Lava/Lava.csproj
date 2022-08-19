@@ -64,10 +64,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="BoxControllerArgs.cs" />
-    <Compile Include="GasAnalyzerArgs.cs" />
-    <Compile Include="Host_FakeDevice.cs" />
-    <Compile Include="TRMArgs.cs" />
+    <Compile Include="DeviceArgs\BaseArgs.cs" />
+    <Compile Include="DeviceArgs\BoxControllerArgs.cs" />
+    <Compile Include="DeviceArgs\GasAnalyzerArgs.cs" />
+    <Compile Include="Devices\BaseDevice.cs" />
+    <Compile Include="Devices\BoxController.cs" />
+    <Compile Include="Devices\GasAnalyzer.cs" />
+    <Compile Include="Devices\TRM.cs" />
+    <Compile Include="TestDevice\HostFakeDevice.cs" />
+    <Compile Include="DeviceArgs\TRMArgs.cs" />
+    <Compile Include="TestDevice\ServerTCP.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,7 +83,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ButtonConnector.cs" />
-    <Compile Include="ButtonMaterialArgs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -112,6 +117,61 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Баллоны_1.png" />
+    <Resource Include="Images\Баллоны_2.png" />
+    <Resource Include="Images\Баллоны_3.png" />
+    <Resource Include="Images\Горящие баллоны_1.png" />
+    <Resource Include="Images\Горящие баллоны_2.png" />
+    <Resource Include="Images\Горящие баллоны_3.png" />
+    <Resource Include="Images\Дверь_1.png" />
+    <Resource Include="Images\Дверь_2.png" />
+    <Resource Include="Images\Дверь_3.png" />
+    <Resource Include="Images\Интерфейс Лава2.png" />
+    <Resource Include="Images\Кровать_2.png" />
+    <Resource Include="Images\Кровать_3.png" />
+    <Resource Include="Images\Логотип БК-студия.png" />
+    <Resource Include="Images\Объёмное воспламенение_1.png" />
+    <Resource Include="Images\Объёмное воспламенение_2.png" />
+    <Resource Include="Images\Объёмное воспламенение_3.png" />
+    <Resource Include="Images\Потолок_1.png" />
+    <Resource Include="Images\Потолок_2.png" />
+    <Resource Include="Images\Потолок_3.png" />
+    <Resource Include="Images\Стрелка.png" />
+    <Resource Include="Images\Телевизор_1.png" />
+    <Resource Include="Images\Телевизор_2.png" />
+    <Resource Include="Images\Телевизор_3.png" />
+    <Resource Include="Images\Трубы_1.png" />
+    <Resource Include="Images\Трубы_10.png" />
+    <Resource Include="Images\Трубы_11.png" />
+    <Resource Include="Images\Трубы_2.png" />
+    <Resource Include="Images\Трубы_3.png" />
+    <Resource Include="Images\Трубы_4.png" />
+    <Resource Include="Images\Трубы_5.png" />
+    <Resource Include="Images\Трубы_6.png" />
+    <Resource Include="Images\Трубы_7.png" />
+    <Resource Include="Images\Трубы_8.png" />
+    <Resource Include="Images\Трубы_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Grey кнопка.png" />
+    <Resource Include="Images\Red кнопка.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Интерфейс Лава4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Силовой ящик_вкл.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Силовой ящик_выкл.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Манометр.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Кровать_1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

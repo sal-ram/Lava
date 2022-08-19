@@ -5,107 +5,140 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConnectedDevice;
+using Lava.Devices;
 
 namespace Lava
 {
     class ButtonConnector
     {
-        ConnectedDevice.ConnectedDevice device;
+        ConnectedDevice.ConnectedDevice connector;
         public event EventHandler<TRMArgs> OnTRMUpdated;
         public event EventHandler<GasAnalyzerArgs> OnGazAnalyzerPromZoneUpdated;
         public event EventHandler<GasAnalyzerArgs> OnGazAnalyzerLiveZoneUpdated;
         public event EventHandler<GasAnalyzerArgs> OnGazAnalyzerGazohranUpdated;
         public event EventHandler<BoxControllerArgs> OnBoxControllerUpdated;
-        public ButtonConnector(string addr, int port) 
+
+        public List<BaseDevice> devices = new List<BaseDevice>() { new TRM(), new GasAnalyzer(), new GasAnalyzer(), new GasAnalyzer(), new BoxController() };
+
+        public ButtonConnector(string addr, int port)
         {
-            device = new NetworkDeviceConn(addr, port, new ConnectedDevice.LoggerConsole());
-            device.Connect();
+            //ServerTCP.DataLoadEvent += GetData;
+            ServerTCP.StartRead();
 
-            //var senderId = device.SendPeriodically(new Command(12,new byte[] {0}));
+            connector = new NetworkDeviceConn(addr, port, new ConnectedDevice.LoggerConsole());
+            connector.Connect();
 
-            device.Send(new Command(12, new byte[] {4}));
+            var senderId = connector.SendPeriodically(new Command(12, new byte[] { 0, 1, 2, 3, 4 }));
 
-            device.OnCommandReceived += Device_OnCommandReceived;
-            device.OnFailedCRC += onFailed;
+            //device.Send(new Command(12, new byte[] { 4 }));
 
-            //device.StopSendingPeriodically(senderId);
+            connector.OnCommandReceived += Device_OnCommandReceived;
+            connector.OnFailedCRC += onFailed;
+        }
+
+        /*public void GetData(byte[] data)
+        {
+            int i = 0;
+            while (i < data.Length)
+            {
+                //Получает устройство, которому предназначается команда
+                BaseDevice devise = devices[data[i]];
+
+                //Массив для данных, полученных от устройства
+                byte[] arrayForDevice = new byte[devise.bytesOnRead];
+
+                //Собирает полученную команду для выбранного устройства
+                Array.Copy(data, (i + 1), arrayForDevice, 0, devise.bytesOnRead);
+
+                devise.Send(arrayForDevice);
+
+                //Смещаем указатель на следующую команду
+                i += (devise.bytesOnRead + 1);
+            }
+        }*/
+
+        public void ConnectHandlers()
+        {
+            devices[0].OnUpdate += ButtonConnector_TRM_OnUpdate;
+            devices[1].OnUpdate += ButtonConnector_GasAnalyzerPromZone_OnUpdate;
+            devices[2].OnUpdate += ButtonConnector_GasAnalyzerLiveZone_OnUpdate;
+            devices[3].OnUpdate += ButtonConnector_GasAnalyzerGazohran_OnUpdate;
+            devices[4].OnUpdate += ButtonConnector_BoxController_OnUpdate;
+        }
+
+        private void ButtonConnector_TRM_OnUpdate(object sender, DeviceArgs.BaseArgs e)
+        {
+            var args = e as TRMArgs;
+            OnTRMUpdated.Invoke(sender,args);
+        }
+
+        private void ButtonConnector_GasAnalyzerPromZone_OnUpdate(object sender, DeviceArgs.BaseArgs e)
+        {
+            var args = e as GasAnalyzerArgs;
+            OnGazAnalyzerPromZoneUpdated.Invoke(sender, args);
+        }
+
+        private void ButtonConnector_GasAnalyzerLiveZone_OnUpdate(object sender, DeviceArgs.BaseArgs e)
+        {
+            var args = e as GasAnalyzerArgs;
+            OnGazAnalyzerLiveZoneUpdated.Invoke(sender, args);
+        }
+
+        private void ButtonConnector_GasAnalyzerGazohran_OnUpdate(object sender, DeviceArgs.BaseArgs e)
+        {
+            var args = e as GasAnalyzerArgs;
+            OnGazAnalyzerGazohranUpdated.Invoke(sender, args);
+        }
+
+        private void ButtonConnector_BoxController_OnUpdate(object sender, DeviceArgs.BaseArgs e)
+        {
+            var args = e as BoxControllerArgs;
+            OnBoxControllerUpdated.Invoke(sender, args);
         }
 
         private void Device_OnCommandReceived(object sender, CommandEventArgs e)
         {
-            var cmd = e.receivedCommand;
-
-            var deviceId = cmd.dataCommand.Take(1).ToArray(); // id устройства
-
-            switch (deviceId[0])
+            int i = 0;
+            while (i < e.receivedCommand.dataCommand.Length)
             {
+                //Получает устройство, которому предназначается команда
+                BaseDevice devise = devices[e.receivedCommand.dataCommand[i]];
 
-                case 0:
-                    OnTRMUpdated.Invoke(this, ConvertTRMValues(cmd.dataCommand));
-                    break;
+                //Массив для данных, полученных от устройства
+                byte[] arrayForDevice = new byte[devise.bytesOnRead];
 
-                case 1:
-                    OnGazAnalyzerPromZoneUpdated.Invoke(this, ConvertGasAnalizerValues(cmd.dataCommand)); // пром зона. Показатель газоанализатора
-                    break;
+                //Собирает полученную команду для выбранного устройства
+                Array.Copy(e.receivedCommand.dataCommand, (i + 1), arrayForDevice, 0, devise.bytesOnRead);
 
-                case 2:
-                    OnGazAnalyzerLiveZoneUpdated.Invoke(this, ConvertGasAnalizerValues(cmd.dataCommand)); // жил зона. Показатель газоанализатора
-                    break;
+                devise.Send(arrayForDevice);
 
-                case 3:
-                    OnGazAnalyzerGazohranUpdated.Invoke(this, ConvertGasAnalizerValues(cmd.dataCommand)); // хранилище газа. Показатель газоанализатора
-                    break;
-
-                case 4:
-                    OnBoxControllerUpdated.Invoke(this, ConvertBoxValues(cmd.dataCommand));
-                    break;
+                //Смещаем указатель на следующую команду
+                i += (devise.bytesOnRead + 1);
             }
-        }
-
-        private GasAnalyzerArgs ConvertGasAnalizerValues(byte[] data)
-        {
-            List<byte[]> valuesBytesGasAnalizer = new List<byte[]>();
-            valuesBytesGasAnalizer.Add(data.Skip(1).Take(2).ToArray()); // Показатель газоанализатора
-            valuesBytesGasAnalizer.Add(data.Skip(3).Take(2).ToArray()); // Состояние газоанализатора
-
-            var GasAnalyzerPercent = BitConverter.ToInt16(valuesBytesGasAnalizer[0], 0);
-            var GasAnalyzeState = BitConverter.ToInt16(valuesBytesGasAnalizer[1], 0);
-
-            return new GasAnalyzerArgs(GasAnalyzerPercent, GasAnalyzeState);
-        }
-
-        private TRMArgs ConvertTRMValues(byte[] data)
-        {
-            List<byte[]> valuesBytesTRM = new List<byte[]>();
-            valuesBytesTRM.Add(data.Skip(17).Take(4).ToArray()); // Жилая зона. Температура
-            valuesBytesTRM.Add(data.Skip(21).Take(4).ToArray()); // Промышленная зона. Температура
-            valuesBytesTRM.Add(data.Skip(25).Take(4).ToArray()); // Газововое хранилище. Температура
-
-            var LiveZoneTemp = BitConverter.ToSingle(valuesBytesTRM[0], 0);
-            var PromZoneTemp = BitConverter.ToSingle(valuesBytesTRM[1], 0);
-            var GazohranZoneTemp = BitConverter.ToSingle(valuesBytesTRM[2], 0);
-
-            return new TRMArgs(GazohranZoneTemp, LiveZoneTemp, PromZoneTemp);
-        }
-
-        private BoxControllerArgs ConvertBoxValues(byte[] data)
-        {
-            List<byte[]> valuesBytesBoxController = new List<byte[]>();
-
-            for (int i = 0; i < data.Length / 2 - 1; i++)
-            {
-                valuesBytesBoxController.Add(data.Skip(2 * i + 1).Take(2).ToArray());
-            }
-
-            valuesBytesBoxController.Add(data.Skip(data.Length - 2).Take(1).ToArray());
-            valuesBytesBoxController.Add(data.Skip(data.Length - 1).Take(1).ToArray());
-
-            return new BoxControllerArgs(valuesBytesBoxController.Take(7).ToList(), valuesBytesBoxController.Skip(7).Take(1).ToList(), valuesBytesBoxController.Skip(8).Take(1).ToList());
         }
 
         void onFailed(object sender, CommandEventArgs args)
         {
   
+        }
+
+        public void Send(params bool[] flags) {
+
+           /* byte[] dataMassive = new byte[flags.Length];
+            for (int i = 0; i < dataMassive.Length; i++)
+            {
+                dataMassive[i] = Convert.ToByte(flags[i]);
+            }
+
+            ServerTCP.SendData(dataMassive);*/
+
+            var dataArray = new byte[flags.Length + 1];
+            dataArray[0] = 4;
+            for (int i = 0; i < flags.Length; i++) {
+                dataArray[i + 1] = Convert.ToByte(flags[i]);
+            }
+
+            connector.Send(new Command(14, dataArray));
         }
     }
 }
