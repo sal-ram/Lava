@@ -31,16 +31,20 @@
     </Window.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1049*"/>
+        </Grid.RowDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="Images/Интерфейс Лава2.png"/>
         </Grid.Background>
 
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,10,993" Height="47" Width="137">
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,8,10,0" Height="47" Width="137" Grid.Row="1">
             <Button Style="{StaticResource MyButton}" Content="-" Cursor="Hand" FontSize="16" MinWidth="25" MinHeight="25" VerticalAlignment="Top" Background="#FF959393" Foreground="White" RenderTransformOrigin="0.5,0.5" FontWeight="Bold" FontStyle="Italic" Click="Button_Click_1" Height="40" Width="40"/>
             <Button Style="{StaticResource MyButton}" Content="X" HorizontalAlignment="Right" Cursor="Hand" FontSize="16" MinWidth="25" MinHeight="25" VerticalAlignment="Top" Background="#FFE64343" Foreground="White" Click="Button_Click" Width="40" Height="40"/>
         </Grid>
 
-        <Grid Margin="10,57,10,10">
+        <Grid Margin="10,55.5,10,10" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="101*"/>
                 <ColumnDefinition Width="336*"/>
@@ -123,8 +127,8 @@
                         </Border>
                     </StackPanel>
                 </Viewbox>
-                <Image Grid.Row="2" x:Name="Monometr" HorizontalAlignment="Left" Height="215" VerticalAlignment="Top" Width="205" Source="Images/Манометр.png" Cursor="Hand" Margin="93,221,0,0"/>
-                <Image Grid.Row="2" x:Name="Monometr_Strelka" HorizontalAlignment="Left" Height="97" VerticalAlignment="Top" Width="21" Source="Images/Стрелка.png" Cursor="Hand" RenderTransformOrigin="0.512,0.692" Margin="186,254,0,0">
+                <Image Grid.Row="2" x:Name="Monometr" HorizontalAlignment="Center" Height="215" VerticalAlignment="Top" Width="204" Source="Images/Манометр.png" Cursor="Hand" Margin="90,224,90,0"/>
+                <Image Grid.Row="2" x:Name="Monometr_Strelka" HorizontalAlignment="Center" Height="97" VerticalAlignment="Top" Width="21" Source="Images/Стрелка.png" Cursor="Hand" RenderTransformOrigin="0.512,0.692" Margin="179,259,184,0">
                     <Image.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleY="1.015" ScaleX="0.985"/>
@@ -155,113 +159,98 @@
                         <ColumnDefinition Width="293*"></ColumnDefinition>
                         <ColumnDefinition Width="401*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-
-                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Height="434" Width="396" Margin="-52,84,238,34" Grid.ColumnSpan="2">
-                        <Image x:Name="Svet" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Images\Силовой Ящик_вкл.png" Cursor="Hand"/>
-                    </Viewbox>
                     <!--Рубильник-->
-                    <Viewbox HorizontalAlignment="Center" Margin="69,7,63,306" Grid.Column="0">
-                        <Label Content="Рубильник" HorizontalAlignment="Center" HorizontalContentAlignment ="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="15" FontFamily="Arial" FontWeight="Bold" Foreground="Black" BorderBrush="#FF555555" Background="{x:Null}" />
+                    <Viewbox Grid.Column="0" Margin="0,74,0,10">
+                        <StackPanel Width="1785" Height="2897">
+                            <Label Content="Рубильник" Margin="0,130,0,0" FontSize="150" FontFamily="Arial" HorizontalAlignment="Center" FontWeight="Bold" Foreground="Black" BorderBrush="#FF555555" Background="{x:Null}"/>
+                            <Image x:Name="Svet" HorizontalAlignment="Center" VerticalAlignment="Center" Source="Images\Силовой Ящик_вкл.png" Cursor="Hand" Height="1948"/>
+                            <Border x:Name="BorderSvet" BorderThickness="1" BorderBrush="Black" CornerRadius="30" RenderTransformOrigin="0.498,0.479" Background="#FFFFBB00" Height="260" Margin="177,360,172,0">
+                                <Button Style="{StaticResource MyButton}" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#00000000" Margin="0,0,0,-1">
+                                    <TextBlock x:Name="Voltage" Text="Под напряжением" FontSize="125" TextAlignment="Center" TextWrapping="Wrap" Width="1360" Height="190"/>
+                                </Button>
+                            </Border>
+                        </StackPanel>
                     </Viewbox>
 
-                    <Viewbox HorizontalAlignment="Center" Grid.Column="0" Margin="10,466,12,6" Width="270">
-                        <Border x:Name="BorderSvet" Grid.Column="0" CornerRadius="5" Padding="2" BorderThickness="1" BorderBrush="Black" RenderTransformOrigin="0.498,0.479" HorizontalAlignment="Center" VerticalAlignment="Center" Width="187" Height="30" Background="#FFFFBB00">
-                            <Label x:Name="Voltage" Content="Под напряжением" HorizontalAlignment="Center" HorizontalContentAlignment ="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="18" FontFamily="Arial" FontWeight="Bold" Foreground="Black" Height="45" BorderBrush="#FF555555" Background="{x:Null}"/>
-                        </Border>
-                    </Viewbox>
-                    <Viewbox HorizontalAlignment="Center" Grid.Column="0" Margin="-122,464,144,10" Width="270">
-                        <Button Style="{StaticResource MyButton}" x:Name="ButtonSvet" Foreground="{x:Null}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="#00000000"/>
-                    </Viewbox>
-                    <!--Имитатор горящей двери-->
-                    <Viewbox HorizontalAlignment="Center" Margin="44,-36,30,239" Grid.Column="1" Width="210">
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="Имитатор горящей двери" TextWrapping="Wrap" FontWeight="Bold" Width="143" VerticalAlignment="Center"></TextBlock>
-                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="0,74,0,10">
+                        <StackPanel Width="2605" Height="4613">
+                            <!--Имитатор горящей двери-->
+                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" FontSize="200" Text="Имитатор горящей двери" FontWeight="Bold"  VerticalAlignment="Top" Margin="239,190,304,0" Height="495"/>
+                            <Image x:Name="Door" HorizontalAlignment="Center" Height="2695" VerticalAlignment="Top" Width="3295" Source="Images\Дверь_1.png" Cursor="Hand" Margin="-330,0,-360,20"/>
+                            <Grid Height="710" Margin="0,500,0,0">
+                                <Image x:Name="Img_But_Door" Source="Images\Grey кнопка.png" Margin="64,299,1337,-12" Width="1204"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Door" VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Height="404" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Door_Click" FontWeight="Bold" Margin="83,306,1357,0">
+                                    <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="171" TextAlignment="Center" Width="1165" Height="404"/>
+                                </Button>
 
-                    <Viewbox HorizontalAlignment="Center" Grid.ColumnSpan="3" Margin="261,-69,228,-122" Width="374">
-                        <Image x:Name="Door" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="208" Source="Images\Дверь_1.png" Cursor="Hand"/>
+                                <Image x:Name="Img_But_Door2" Source="Images\Grey кнопка.png" Margin="1382,299,19,0" Width="1204"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Door2" FontSize="11"  VerticalAlignment="Center" FontFamily="Arial" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Door_Click2" FontWeight="Bold" Foreground="Gray" Margin="1394,306,25,20">
+                                    <TextBlock Text="Основная горелка" FontSize="171" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="1138" Height="384"/>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
                     </Viewbox>
-
-                    <Image x:Name="Img_But_Door" Grid.Column="1" Source="Images\Grey кнопка.png" Margin="18,378,141,-83"/>
-                    <Button Style="{StaticResource MyButton}" x:Name="Fuse_Door" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="41" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Door_Click" FontWeight="Bold" Margin="19,466,141,0" Grid.Column="1">
-                        <Button.Content>
-                            <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="124"/>
-                        </Button.Content>
-                    </Button>
-
-                    <Image x:Name="Img_But_Door2" Grid.Column="1" Source="Images\Grey кнопка.png" Margin="149,378,9,-83"/>
-                    <Button Style="{StaticResource MyButton}" x:Name="Fuse_Door2" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="41" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Door_Click2" FontWeight="Bold" Foreground="Gray" Grid.Column="1" Margin="149,466,12,0">
-                        <Button.Content>
-                            <TextBlock Text="Основная горелка" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="127"/>
-                        </Button.Content>
-                    </Button>
                     <!--Газовые баллоны-->
-                    <Viewbox HorizontalAlignment="Center" Margin="42,-37,34,239" Grid.Column="2" Width="211">
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="Имитатор горящих газовых баллонов" TextWrapping="Wrap" FontWeight="Bold" Width="143" VerticalAlignment="Center"></TextBlock>
+                    <Viewbox Grid.Column="2" Margin="0,74,0,10">
+                        <StackPanel Width="6194" Height="9117">
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="400" Text="Имитатор горящих газовых баллонов" TextWrapping="Wrap" FontWeight="Bold" Width="4408" VerticalAlignment="Center" Margin="1017,250,769,0" Height="1072"/>
+                            <Image x:Name="Cylinders" HorizontalAlignment="Center" Height="7398" VerticalAlignment="Top" Width="5995" Source="Images\Горящие баллоны_1.png" Cursor="Hand" Margin="88,0,111,0"/>
+                            <Grid Margin="0,-1500,0,0" Height="1733">
+                                <Image x:Name="Img_But_Cylinders" Source="Images\Grey кнопка.png" Margin="686,1032,3106,-186" />
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Cylinders"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Height="813" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Cylinders_Click" FontWeight="Bold" Margin="675,1073,3132,-153">
+                                    <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="317" TextAlignment="Center" Width="2377" Height="784"/>
+                                </Button>
+
+                                <Image x:Name="Img_But_Cylinders2" Source="Images\Grey кнопка.png" Margin="3304,1032,467,-187"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Cylinders2"  VerticalAlignment="Center" FontSize="11" Foreground="Gray" FontFamily="Arial" Height="892" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Cylinders_Click2" FontWeight="Bold" Margin="3304,1019,502,-178">
+                                    <TextBlock Text="Основная горелка" TextWrapping="Wrap" FontSize="317" TextAlignment="Center" Width="2306" Height="805"/>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
                     </Viewbox>
+                    <Viewbox Grid.Column="3" Margin="0,83,0,10">
+                        <StackPanel Orientation="Vertical" Height="1315" Width="1336">
+                            <!--Газовый трубопровод-->
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="65" Text="Имитатор горящего газового трубопровода" TextWrapping="Wrap" FontWeight="Bold" Width="1264" VerticalAlignment="Center"></TextBlock>
+                            <StackPanel Orientation="Horizontal" Height="1139">
+                                <!--Нижний фланец-->
+                                <Image x:Name="Flange" HorizontalAlignment="Left" Height="1065" Margin="-200,0,0,0" VerticalAlignment="Top" Width="1137" Source="Images\Трубы_1.png" Cursor="Hand"/>
+                                <!--Нижний фланец-->
+                                <Grid Width="599" Margin="-200,113,0,146">
+                                    <Border Margin="90,455,48,22" BorderBrush="Black" BorderThickness="2" CornerRadius="30">
+                                        <Grid Margin="0,0,-1,0">
+                                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="35" TextWrapping="Wrap" FontWeight="Bold" Width="335" VerticalAlignment="Center" Margin="62,21,61,330" Height="48" Padding="0" ScrollViewer.CanContentScroll="True"><Run Text="Нижний "/><Run Text="фланец"/></TextBlock>
+                                            <Image x:Name="Img_But_Flange_Low" Source="Images\Grey кнопка.png" Margin="62,-25,47,44"/>
+                                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange_Low" VerticalAlignment="Center" FontFamily="Arial" Height="115" Cursor="Hand" Click="Fuse_Flange_Click_Low" BorderBrush="{x:Null}" FontWeight="Bold" Margin="62,113,47,171">
+                                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="43" TextAlignment="Center" Width="332" Height="109"/>
+                                            </Button>
 
-                    <Viewbox HorizontalAlignment="Center" Grid.ColumnSpan="3" Grid.Column="1" Margin="254,38,335,-23" Width="375">
-                        <Image x:Name="Cylinders" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="208" Source="Images\Горящие баллоны_1.png" Cursor="Hand"/>
+                                            <Image x:Name="Img_But_Flange2_Low" Source="Images\Grey кнопка.png" Margin="62,228,47,10"/>
+                                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange2_Low" FontSize="11" FontFamily="Arial" Cursor="Hand" Click="Fuse_Flange_Click2_Low" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="62,255,47,33">
+                                                <TextBlock Text="Основная горелка" FontSize="43" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="339" Height="111"/>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+
+                                    <!--Верхний фланец-->
+                                    <Border Margin="90,0,48,480" BorderBrush="Black" BorderThickness="2" CornerRadius="30">
+                                        <Grid>
+                                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="35" TextWrapping="Wrap" FontWeight="Bold" Width="316" VerticalAlignment="Center" Margin="77,10,64,337" Height="49" Padding="0" ScrollViewer.CanContentScroll="True"><Run  Text="Верхний "/><Run Text="фланец"/></TextBlock>
+                                            <Image x:Name="Img_But_Flange_High" Source="Images\Grey кнопка.png" Margin="68,26,45,113"/>
+                                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange_High"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Height="111" Cursor="Hand" Click="Fuse_Flange_Click_High" BorderBrush="{x:Null}" FontWeight="Bold" Margin="68,99,54,186">
+                                                <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="45" TextAlignment="Center" Width="325" Height="102"/>
+                                            </Button>
+
+                                            <Image x:Name="Img_But_Flange2_High" Source="Images\Grey кнопка.png" Margin="68,144,45,-55"/>
+                                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange2_High"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Height="107" Cursor="Hand" Click="Fuse_Flange_Click2_High" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="77,242,55,47">
+                                                <TextBlock Text="Основная горелка" FontSize="45" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="325" Height="107"/>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
                     </Viewbox>
-
-                    <Image x:Name="Img_But_Cylinders" Grid.Column="2" Source="Images\Grey кнопка.png" Margin="18,202,142,-259"/>
-                    <Button Style="{StaticResource MyButton}" x:Name="Fuse_Cylinders" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="42" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Cylinders_Click" FontWeight="Bold" Margin="18,466,144,-180" Grid.Column="2">
-                        <Button.Content>
-                            <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="125"/>
-                        </Button.Content>
-                    </Button>
-
-                    <Image x:Name="Img_But_Cylinders2" Grid.Column="2" Source="Images\Grey кнопка.png" Margin="150,202,10,-259"/>
-                    <Button Style="{StaticResource MyButton}" x:Name="Fuse_Cylinders2" VerticalAlignment="Top" FontSize="11" Foreground="Gray" FontFamily="Arial" Height="42" Cursor="Hand" BorderBrush="{x:Null}" Click="Fuse_Cylinders_Click2" FontWeight="Bold" Margin="150,466,12,0" Grid.Column="2">
-                        <Button.Content>
-                            <TextBlock Text="Основная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="125"/>
-                        </Button.Content>
-                    </Button>
-                    <!--Газовый трубопровод-->
-                    <Viewbox HorizontalAlignment="Center" Margin="77,-61,57,213" Grid.Column="3" Width="259">
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="Имитатор горящего газового трубопровода" TextWrapping="Wrap" FontWeight="Bold" Width="173" VerticalAlignment="Center"></TextBlock>
-                    </Viewbox>
-
-                    <Viewbox HorizontalAlignment="Center" Grid.Column="2" Width="404" Margin="219,10,57,-83" Grid.ColumnSpan="2">
-                        <Image x:Name="Flange" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="208" Source="Images\Трубы_1.png" Cursor="Hand"/>
-                    </Viewbox>
-                    <!--Нижний фланец-->
-                    <Border Grid.Column="3" Margin="208,355,20,7" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
-                        <Grid>
-                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" TextWrapping="Wrap" FontWeight="Bold" Width="128" VerticalAlignment="Center" Margin="18,12,17,117" Height="22" Padding="0" ScrollViewer.CanContentScroll="True"><Run Text="Нижний "/><Run Text="фланец"/></TextBlock>
-                            <Image x:Name="Img_But_Flange_Low" Source="Images\Grey кнопка.png" Margin="21,28,17,34"/>
-                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange_Low" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="47" Cursor="Hand" Click="Fuse_Flange_Click_Low" BorderBrush="{x:Null}" FontWeight="Bold" Margin="21,51,17,0">
-                                <Button.Content>
-                                    <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="125" Height="46"/>
-                                </Button.Content>
-                            </Button>
-
-                            <Image x:Name="Img_But_Flange2_Low" Source="Images\Grey кнопка.png" Margin="21,64,17,-28"/>
-                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange2_Low" FontSize="11" FontFamily="Arial" Cursor="Hand" Click="Fuse_Flange_Click2_Low" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="21,101,17,10">
-                                <Button.Content>
-                                    <TextBlock Text="Основная горелка" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="122" Height="38"/>
-                                </Button.Content>
-                            </Button>
-                        </Grid>
-                    </Border>
-                    <!--Верхний фланец-->
-                    <Border Grid.Column="3" Margin="208,181,20,174" BorderBrush="Black" BorderThickness="1" CornerRadius="10">
-                        <Grid>
-                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" TextWrapping="Wrap" FontWeight="Bold" Width="127" VerticalAlignment="Center" Margin="21,10,20,124" Height="22" Padding="0" ScrollViewer.CanContentScroll="True"><Run  Text="Верхний "/><Run Text="фланец"/></TextBlock>
-                            <Image x:Name="Img_But_Flange_High" Source="Images\Grey кнопка.png" Margin="21,6,20,6"/>
-                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange_High" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="44" Cursor="Hand" Click="Fuse_Flange_Click_High" BorderBrush="{x:Null}" FontWeight="Bold" Margin="21,56,20,0">
-                                <Button.Content>
-                                    <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="122"/>
-                                </Button.Content>
-                            </Button>
-
-                            <Image x:Name="Img_But_Flange2_High" Source="Images\Grey кнопка.png" Margin="21,56,20,-38"/>
-                            <Button Style="{StaticResource MyButton}" x:Name="Fuse_Flange2_High" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="41" Cursor="Hand" Click="Fuse_Flange_Click2_High" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="21,105,20,0">
-                                <Button.Content>
-                                    <TextBlock Text="Основная горелка" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="126"/>
-                                </Button.Content>
-                            </Button>
-                        </Grid>
-                    </Border>
 
                     <Viewbox VerticalAlignment="Top" Margin="2,19,-139,0" Height="59" Grid.Column="3">
                         <StackPanel Orientation="Horizontal" Width="331" Height="40" >
@@ -296,75 +285,67 @@
                         <ColumnDefinition Width="404*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <!--Потолок-->
-                    <Viewbox HorizontalAlignment="Center" Margin="106,-11,65,250" Grid.Column="0" Width="254">
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="Имитатор объемного воспламенения" TextWrapping="Wrap" FontWeight="Bold" Width="162" VerticalAlignment="Center"></TextBlock>
+                    <Viewbox Grid.Column="0" Margin="0,51,0,31">
+                        <StackPanel Width="20969" Height="19192">
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="1215" Text="Имитатор объемного воспламенения" TextWrapping="Wrap" FontWeight="Bold" Width="17149" VerticalAlignment="Center" Margin="2364,300,1456,0" Height="3416"></TextBlock>
+                            <Image x:Name="Ceiling" HorizontalAlignment="Center" VerticalAlignment="Top" Source="Images\Объёмное воспламенение_1.png" Cursor="Hand" Height="14068" Margin="3241,-1000,1373,900" Width="16355"/>
+                            <Grid Height="2417">
+                                <Image x:Name="Img_But_Ceiling" Source="Images\Grey кнопка.png" Margin="5069,-724,10269,850"/>
+                                <Button Style="{StaticResource MyButton}" Grid.Column="0" x:Name="Fuse_Ceiling"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Click="Fuse_Ceiling_Click" Height="1873" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Margin="5268,-446,10325,990">
+                                    <Button.Content>
+                                        <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="717" TextAlignment="Center" Width="5371" Height="1854"/>
+                                    </Button.Content>
+                                </Button>
+                                <Image x:Name="Img_But_Ceiling2" Source="Images\Grey кнопка.png" Margin="11077,-712,4153,861" />
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Ceiling2"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Click="Fuse_Ceiling_Click2" Height="1826" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="11196,-508,4174,1099">
+                                    <Button.Content>
+                                        <TextBlock Text="Основная горелка" FontSize="717" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="5512" Height="1710"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
                     </Viewbox>
-
-                    <Viewbox HorizontalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Margin="30,10,443,0">
-                        <Image x:Name="Ceiling" HorizontalAlignment="Left" Height="168" VerticalAlignment="Top" Width="208" Source="Images\Объёмное воспламенение_1.png" Cursor="Hand"/>
-                    </Viewbox>
-
-                    <Image x:Name="Img_But_Ceiling" Grid.Column="0" Source="Images\Grey кнопка.png" Margin="98,295,201,-52"/>
-                    <Button Style="{StaticResource MyButton}" Grid.Column="0" x:Name="Fuse_Ceiling" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Click="Fuse_Ceiling_Click" Height="43" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Margin="98,375,201,0">
-                        <Button.Content>
-                            <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="126"/>
-                        </Button.Content>
-                    </Button>
-
-                    <Image x:Name="Img_But_Ceiling2" Grid.Column="0" Source="Images\Grey кнопка.png" Margin="234,266,65,-81"/>
-                    <Button Style="{StaticResource MyButton}" Grid.Column="0" x:Name="Fuse_Ceiling2" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Click="Fuse_Ceiling_Click2" Height="44" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="234,375,65,0">
-                        <Button.Content>
-                            <TextBlock Text="Основная горелка" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="123"/>
-                        </Button.Content>
-                    </Button>
 
                     <!--Кровать-->
+                    <Viewbox Grid.Column="1" Margin="0,51,0,31">
+                        <StackPanel Width="7082" Height="6036">
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="400" Text="Имитатор горящей кровати" TextWrapping="Wrap" FontWeight="Bold" Width="5887" VerticalAlignment="Center" Margin="286,140,149,0" Height="942"></TextBlock>
+                            <Image x:Name="Bed" HorizontalAlignment="Center" VerticalAlignment="Top" Source="Images\Кровать_1.png" Cursor="Hand" Height="4699" Margin="438,-300,323,0" Width="6321"/>
+                            <Grid Height="2242" Margin="0,-500,0,0">
+                                <Image x:Name="Img_But_Bed" Source="Images\Grey кнопка.png" Margin="1493,136,3780,950"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Bed"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Height="596" Click="Fuse_Bed_Click" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Margin="1550,415,3780,1231">
+                                    <Button.Content>
+                                        <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="257" TextAlignment="Center" Width="1722" Height="619"/>
+                                    </Button.Content>
+                                </Button>
 
-                    <Viewbox HorizontalAlignment="Center" Margin="113,3,102,270" Grid.Column="1" Width="258">
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="Имитатор горящей кровати" TextWrapping="Wrap" FontWeight="Bold" Width="162" VerticalAlignment="Center"></TextBlock>
+                                <Image x:Name="Img_But_Bed2" Source="Images\Grey кнопка.png" Margin="3444,266,1829,1068"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_Bed2" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="612" Click="Fuse_Bed_Click2" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="3486,399,1829,0">
+                                    <Button.Content>
+                                        <TextBlock Text="Основная горелка" FontSize="257" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="1737" Height="590"/>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
                     </Viewbox>
-
-                    <Viewbox HorizontalAlignment="Center" Grid.Column="1" Margin="80,45,53,-18" Width="340">
-                        <Image x:Name="Bed" HorizontalAlignment="Center" VerticalAlignment="Top" Source="Images\Кровать_1.png" Cursor="Hand"/>
-                    </Viewbox>
-
-                    <Image x:Name="Img_But_Bed" Source="Images\Grey кнопка.png" Margin="104,295,238,-52" Grid.Column="1"/>
-                    <Button Style="{StaticResource MyButton}" Grid.Column="1" x:Name="Fuse_Bed" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="44" Click="Fuse_Bed_Click" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Margin="104,375,239,0">
-                        <Button.Content>
-                            <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="124"/>
-                        </Button.Content>
-                    </Button>
-
-                    <Image x:Name="Img_But_Bed2" Grid.Column="1" Source="Images\Grey кнопка.png" Margin="239,266,102,-81"/>
-                    <Button Style="{StaticResource MyButton}" Grid.Column="1" x:Name="Fuse_Bed2" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="41" Click="Fuse_Bed_Click2" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="240,377,102,0">
-                        <Button.Content>
-                            <TextBlock Text="Основная горелка" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="124" Height="41"/>
-                        </Button.Content>
-                    </Button>
-
                     <!--Телевизор-->
+                    <Viewbox Grid.Column="2" Margin="0,51,0,31">
+                        <StackPanel Width="3104" Height="2746">
+                            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="165" Text="Имитатор горящего телевизора" TextWrapping="Wrap" FontWeight="Bold" Width="2528" VerticalAlignment="Center" Margin="322,0,254,0" Height="521"></TextBlock>
+                            <Image x:Name="TV" HorizontalAlignment="Center" Height="1758" VerticalAlignment="Top" Width="2461" Source="Images\Телевизор_1.png" Cursor="Hand" Margin="430,0,213,0"/>
+                            <Grid>
+                                <Image x:Name="Img_But_TV" Source="Images\Grey кнопка.png" Margin="790,198,1532,511"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_TV"  VerticalAlignment="Center" FontSize="45" FontFamily="Arial" Height="267" Click="Fuse_TV_Click" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Margin="790,192,1532,517">
+                                    <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="105" TextAlignment="Center" Width="741" Height="257"/>
+                                </Button>
 
-                    <Viewbox HorizontalAlignment="Center" Margin="88,1,60,270" Grid.Column="2" Width="261">
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center" FontSize="15" Text="Имитатор горящего телевизора" TextWrapping="Wrap" FontWeight="Bold" Width="162" VerticalAlignment="Center"></TextBlock>
+                                <Image x:Name="Img_But_TV2" Source="Images\Grey кнопка.png" Margin="1662,192,660,501"/>
+                                <Button Style="{StaticResource MyButton}" x:Name="Fuse_TV2"  VerticalAlignment="Center" FontSize="11" FontFamily="Arial" Height="267" Click="Fuse_TV_Click2" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="1662,208,660,501">
+                                    <TextBlock Text="Основная горелка" FontSize="105" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="772" Height="257"/>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
                     </Viewbox>
-
-                    <Viewbox HorizontalAlignment="Center" Grid.Column="2" Margin="36,27,28,0" Width="340">
-                        <Image x:Name="TV" HorizontalAlignment="Left" Height="165" VerticalAlignment="Top" Width="197" Source="Images\Телевизор_1.png" Cursor="Hand"/>
-                    </Viewbox>
-
-                    <Image x:Name="Img_But_TV" Source="Images\Grey кнопка.png" Margin="80,276,197,-72" Grid.Column="2"/>
-                    <Button Style="{StaticResource MyButton}" Grid.Column="2" x:Name="Fuse_TV" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="41" Click="Fuse_TV_Click" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Margin="80,377,197,0">
-                        <Button.Content>
-                            <TextBlock Text="Запальная горелка" TextWrapping="Wrap" FontSize="17" TextAlignment="Center" Width="127"/>
-                        </Button.Content>
-                    </Button>
-
-                    <Image x:Name="Img_But_TV2" Grid.Column="2" Source="Images\Grey кнопка.png" Margin="217,258,60,-91"/>
-                    <Button Style="{StaticResource MyButton}" Grid.Column="2" x:Name="Fuse_TV2" VerticalAlignment="Top" FontSize="11" FontFamily="Arial" Height="41" Click="Fuse_TV_Click2" Cursor="Hand" BorderBrush="{x:Null}" FontWeight="Bold" Foreground="Gray" Margin="217,377,60,0">
-                        <Button.Content>
-                            <TextBlock Text="Основная горелка" FontSize="17" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Width="127"/>
-                        </Button.Content>
-                    </Button>
 
                     <Viewbox VerticalAlignment="Top" Height="86" Grid.Column="2" Margin="36,-5,-102,0">
                         <StackPanel Orientation="Horizontal" Width="331" Height="40" >

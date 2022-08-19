@@ -184,14 +184,14 @@ namespace Lava
                 fuseDoorFlag2 = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Door_UpdateState(this, new RoutedEventArgs());
+            //Fuse_Door_UpdateState(this, new RoutedEventArgs());
         }
         private void Fuse_Door_Click2(object sender, RoutedEventArgs e)
         {
             fuseDoorFlag2 = !fuseDoorFlag2;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Door_UpdateState2(this, new RoutedEventArgs());
+            //Fuse_Door_UpdateState2(this, new RoutedEventArgs());
         }
 
         private void Fuse_Flange_Click_Low(object sender, RoutedEventArgs e)
@@ -201,14 +201,14 @@ namespace Lava
                 fuseFlangerFlag2_Low = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Flange_UpdateState_Low(this, new RoutedEventArgs());
+            //Fuse_Flange_UpdateState_Low(this, new RoutedEventArgs());
         }
         private void Fuse_Flange_Click2_Low(object sender, RoutedEventArgs e)
         {
             fuseFlangerFlag2_Low = !fuseFlangerFlag2_Low;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Flange_UpdateState2_Low(this, new RoutedEventArgs());
+            //Fuse_Flange_UpdateState2_Low(this, new RoutedEventArgs());
         }
 
         private void Fuse_Flange_Click_High(object sender, RoutedEventArgs e)
@@ -218,14 +218,14 @@ namespace Lava
                 fuseFlangerFlag2_High = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Flange_UpdateState_High(this, new RoutedEventArgs());
+            //Fuse_Flange_UpdateState_High(this, new RoutedEventArgs());
         }
         private void Fuse_Flange_Click2_High(object sender, RoutedEventArgs e)
         {
             fuseFlangerFlag2_High = !fuseFlangerFlag2_High;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Flange_UpdateState2_High(this, new RoutedEventArgs());
+            //Fuse_Flange_UpdateState2_High(this, new RoutedEventArgs());
         }
 
         private void Fuse_Cylinders_Click(object sender, RoutedEventArgs e)
@@ -235,14 +235,14 @@ namespace Lava
                 fuseCylindersFlag2 = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Cylinders_UpdateState(this, new RoutedEventArgs());
+            //Fuse_Cylinders_UpdateState(this, new RoutedEventArgs());
         }
         private void Fuse_Cylinders_Click2(object sender, RoutedEventArgs e)
         {
             fuseCylindersFlag2 = !fuseCylindersFlag2;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Cylinders_UpdateState2(this, new RoutedEventArgs());
+            //Fuse_Cylinders_UpdateState2(this, new RoutedEventArgs());
         }
 
         private void Fuse_Ceiling_Click(object sender, RoutedEventArgs e)
@@ -252,14 +252,14 @@ namespace Lava
                 fuseCeilingFlag2 = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Ceiling_UpdateState(this, new RoutedEventArgs());
+            //Fuse_Ceiling_UpdateState(this, new RoutedEventArgs());
         }
         private void Fuse_Ceiling_Click2(object sender, RoutedEventArgs e)
         {
             fuseCeilingFlag2 = !fuseCeilingFlag2;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Ceiling_UpdateState2(this, new RoutedEventArgs());
+            //Fuse_Ceiling_UpdateState2(this, new RoutedEventArgs());
         }
 
         private void Fuse_Bed_Click(object sender, RoutedEventArgs e)
@@ -269,13 +269,14 @@ namespace Lava
                 fuseBedFlag2 = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_Bed_UpdateState(this, new RoutedEventArgs());
+            //Fuse_Bed_UpdateState(this, new RoutedEventArgs());
         }
         private void Fuse_Bed_Click2(object sender, RoutedEventArgs e)
         {
             fuseBedFlag2 = !fuseBedFlag2;
             buttonConnector.Send(ReturnActualArrayOfStates());
-            Fuse_Bed_UpdateState2(this, new RoutedEventArgs());
+
+            //Fuse_Bed_UpdateState2(this, new RoutedEventArgs());
         }
 
         private void Fuse_TV_Click(object sender, RoutedEventArgs e)
@@ -285,14 +286,14 @@ namespace Lava
                 fuseTVFlag2 = false;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_TV_UpdateState(this, new RoutedEventArgs());
+            //Fuse_TV_UpdateState(this, new RoutedEventArgs());
         }
         private void Fuse_TV_Click2(object sender, RoutedEventArgs e)
         {
             fuseTVFlag2 = !fuseTVFlag2;
             buttonConnector.Send(ReturnActualArrayOfStates());
 
-            Fuse_TV_UpdateState2(this, new RoutedEventArgs());
+            //Fuse_TV_UpdateState2(this, new RoutedEventArgs());
         }
 
         // обновление состояния горелок
@@ -475,13 +476,13 @@ namespace Lava
             {
                 Svet.Source = svetOn;
                 BorderSvet.Background = new SolidColorBrush(new Color { R = 255, G = 187, B = 100, A = 255 });
-                Voltage.Content = "Под напряжением";
+                Voltage.Text = "Под напряжением";
             }
             else
             {
                 Svet.Source = svetOff;
                 BorderSvet.Background = new SolidColorBrush(new Color { R = 197, G = 197, B = 197, A = byte.MaxValue });
-                Voltage.Content = "Без напряжения";
+                Voltage.Text = "Без напряжения";
             }
         }
 

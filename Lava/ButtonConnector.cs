@@ -22,7 +22,7 @@ namespace Lava
 
         public ButtonConnector(string addr, int port)
         {
-            //ServerTCP.DataLoadEvent += GetData;
+            //ServerTCP.DataLoadEvent += GetData; //расскоментировать для теста с tcp эмулятором
             ServerTCP.StartRead();
 
             connector = new NetworkDeviceConn(addr, port, new ConnectedDevice.LoggerConsole());
@@ -36,7 +36,7 @@ namespace Lava
             connector.OnFailedCRC += onFailed;
         }
 
-        /*public void GetData(byte[] data)
+       /* public void GetData(byte[] data) /// расскоментировать для теста с tcp эмулятором
         {
             int i = 0;
             while (i < data.Length)
@@ -124,7 +124,7 @@ namespace Lava
 
         public void Send(params bool[] flags) {
 
-           /* byte[] dataMassive = new byte[flags.Length];
+            /*byte[] dataMassive = new byte[flags.Length]; //расскоментировать для теста с tcp эмулятором
             for (int i = 0; i < dataMassive.Length; i++)
             {
                 dataMassive[i] = Convert.ToByte(flags[i]);
@@ -133,12 +133,12 @@ namespace Lava
             ServerTCP.SendData(dataMassive);*/
 
             var dataArray = new byte[flags.Length + 1];
-            dataArray[0] = 4;
+            dataArray[0] = 4; // первым числом идет номер девайса, которому все отправляется (тут только один девайс)
             for (int i = 0; i < flags.Length; i++) {
                 dataArray[i + 1] = Convert.ToByte(flags[i]);
             }
 
-            connector.Send(new Command(14, dataArray));
+            connector.Send(new Command(14, dataArray)); // массив состояний горелок
         }
     }
 }
